@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des produits{% endblock %}
+
+{% block body %}
+
+ 
+	
+<div class="container  ">
+  <form class="d-flex mt-3 mx-5" role="search" method="post" action="/product/search">
+      <input class="form-control me-2" name="search"type="search" placeholder="Recherche" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Recherche</button>
+    </form>
+	
+<div class="row">
+
+
+               {% if products is defined and not (products is empty) %} 
+
+
+                {% for product in products.products %}
+                 
+				 
+				  <div class="col-6 col-md-6 ">
+						
+							 <div class="card m-2 text-center">
+							    {% set url='https://8I9SNSSLPNP2C93WKEXYVYGQ1S34PC7M@la-mode.shop/api/' %}
+								
+								
+							  {% if url|file_exists =='200' %}
+						        <img style="max-width:280px; max-height:300px" class="mx-auto m-1" src="https://la-mode.shop/api/images/products/{{product.id}}/{{product.associations.images[0].id}}" alt="Card image cap">
+
+							  
+							   {% endif %}
+							  <div class="card-body">
+								<h5 class="card-title">{{product.name}}</h5>
+								<h5 class="text-info">{{product.price}} Dinars</h5>
+
+								<p class="card-text">{{product.description_short| raw}}</p>
+								<a  class="btn btn-primary"  href="/product/detail/{{product.id}}">Détails</a>
+							
+
+							  </div>
+							</div>
+                        
+                        
+						  
+						  
+                        </div>
+						
+                {% endfor %} 
+			
+		   {% else %} 
+                               
+               <div class="mt-2 alert alert-primary alert-dismissible fade show" role="alert">
+			  <strong> Pas de produit</strong>
+			  </div>
+	      {% endif %}
+		
+ <div id="product_section">
+          </div>
+          <div class="mt-2 d-flex justify-content-center" id="pagination"></div>
+            </div>
+				 </div>
+</div>
+{% endblock %}
+
+{% block javaScript %}
+<script src="{{asset('js/pagination/pagination.min.js')}}"></script>
+<script src="{{asset('assets/api.js')}}"></script>
+
+<script>
+$(document).ready(function() {
+
+    //GetCarList2();
+    
+
+         });
+</script>
+
+
+{% endblock %}
+

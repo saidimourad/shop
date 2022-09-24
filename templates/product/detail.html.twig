@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détals produit{% endblock %}
+
+{% block body %}
+
+
+<div class="container">
+
+{% if detailproduct is defined %} 
+
+<div class="card text-center mt-2">
+  <div class="card-header">
+   Détail produit
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{detailproduct.product.name }}</h5>
+	<h5 class="text-info">{{detailproduct.product.price }} Dinars</h5>
+ <h5 class="card-title">Référence: {{detailproduct.product.reference }}</h5>
+ 
+ 
+ 	{{detailproduct.product.description_short| raw }}
+	
+	
+	
+	
+	{{detailproduct.product.description| raw }}
+    <a href="/" class="btn btn-primary">Liste produit</a>
+  </div>
+  <div class="card-footer text-muted">
+    {{detailproduct.product.link_rewrite}}
+  </div>
+</div>
+
+   {% endif %}
+</div>
+{% endblock %}
+
+{% block javaScript %}
+
+{% endblock %}
+

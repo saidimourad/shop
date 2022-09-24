@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des produits{% endblock %}
+
+{% block body %}
+
+ 
+	
+<div class="container  ">
+  <form class="d-flex mt-3 mx-5" role="search" method="post" action="/product/search">
+      <input class="form-control me-2" name="search" id="search" type="search" placeholder="Recherche" aria-label="Search">
+      <button class="btn btn-outline-success" id="btn-search" type="submit">Recherche</button>
+    </form>
+	
+<div class="row">
+
+
+              
+		
+ <div id="product_section">
+          </div>
+          <div class="mt-2 d-flex justify-content-center" id="pagination"></div>
+            </div>
+				 </div>
+</div>
+{% endblock %}
+
+{% block javaScript %}
+     		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+			<script src="{{asset('js/pagination/pagination.min.js')}}"></script>
+		<script src="{{asset('js/api.js')}}"></script>
+
+		<script>
+		$(document).ready(function() {
+
+			GetCarList(variable='');
+			
+
+				 });
+				 
+     $("#btn-search").click(function (e) {
+	  e.preventDefault();
+            variable = $('#search').val();
+              GetCarList(variable);
+       
+	   });
+		</script>
+
+{% endblock %}
+
